@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhotoSharing Website In Django</title>
+    <link rel="stylesheet" href="{% static './index.css' %}">
+</head>
+<body>
+    <h1>PhotoSharing Website In Django user ={{user}}</h1>
+    <form action="" method="POST" enctype='multipart/form-data'>
+    {% csrf_token %}
+        <input type="text" name="title" id="text">
+        <input type="file" name="file" id="file">
+        <button type="submit">Upload</button>
+    </form>
+    <div class="container">
+    {% for i in Photos %}
+        <div class="img">
+            <img src="{{i.image.url}}" alt="">
+            <h3 class="title">{{i.title}}</h3>
+            <a href="{{i.image.url}}">http://127.0.0.1:8000{{i.image.url}}</a>
+        </div>
+       {% endfor %}
+    </div>
+</body>
+</html>
